@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hyunmindev</title>
+</head>
+<body>
+
+<input id="inputView">
+<p id="pView"></p>
+
+<script src="data.js"></script>
+<script>
+  const data = new Data('');
+  inputView.oninput = () => {
+    data.value = inputView.value;
+  };
+
+  function updatePView(newData) {
+    pView.innerHTML = newData;
+  }
+
+  function updateInputView(newData) {
+    inputView.value = newData;
+  }
+
+  data.subscribe(updatePView);
+  data.subscribe(updateInputView);
+
+  setTimeout(() => data.value = 'new', 3000);
+</script>
+
+</body>
+</html>

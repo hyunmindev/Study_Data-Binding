@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hyunmindev</title>
+</head>
+<body>
+
+<input model="myData"  spellcheck="false">
+<p bind="myData"></p>
+<p bind="myData"></p>
+<p bind="myData"></p>
+<p bind="myData"></p>
+<p bind="myData"></p>
+
+<script src="data.js"></script>
+<script>
+  const data = {};
+  data.myData = new Data('');
+  const modelViews = document.querySelectorAll('[model]');
+  const bindViews = document.querySelectorAll('[bind]');
+
+  modelViews.forEach((view) => {
+    const name = view.getAttribute('model');
+    view.oninput= () => {
+      data[name].value = view.value;
+    }
+    data[name].subscribe((newValue) => {
+      view.value = newValue;
+    });
+  })
+  bindViews.forEach((view) => {
+    const name = view.getAttribute('bind');
+    data[name].subscribe((newValue) => {
+      view.innerHTML = newValue;
+    });
+  })
+</script>
+
+</body>
+</html>

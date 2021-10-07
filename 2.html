@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hyunmindev</title>
+</head>
+<body>
+
+<p id="view"></p>
+
+<script src="data.js"></script>
+<script>
+  const data = new Data('');
+
+  function updateView(newData) {
+    view.innerHTML = newData;
+  }
+  data.subscribe(updateView);
+
+  setTimeout(() => data.value = 1, 1000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hyunmindev</title>
+</head>
+<body>
+
+<p id="view"></p>
+
+<script>
+  let data = '';
+  const view = document.getElementById('view');
+  setTimeout(() => changeData(1), 1000);
+
+  function changeData(newData) {
+    data = newData;
+    view.innerHTML = data;
+  }
+</script>
+
+</body>
+</html>
