@@ -14,8 +14,8 @@
   setTimeout(() => changeData(1), 1000);
 
   function changeData(newData) {
-    data = newData;
-    view.innerHTML = data;
+    data = newData;        // 데이터 변경
+    view.innerText = data; // 변경된 데이터를 뷰에 반영
   }
 </script>
 

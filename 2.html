@@ -5,19 +5,17 @@
     <title>hyunmindev</title>
 </head>
 <body>
+<script src="data.js"></script>
 
 <p id="view"></p>
 
-<script src="data.js"></script>
 <script>
-  const data = new Data('');
+  const 데이터 = new Data('');
+  const 뷰 = new View(view);
 
-  function updateView(newData) {
-    view.innerHTML = newData;
-  }
-  data.subscribe(updateView);
+  데이터.구독(뷰);
 
-  setTimeout(() => data.value = 1, 1000);
+  setTimeout(() => 데이터.업데이트(1), 1000);
 </script>
 
 </body>

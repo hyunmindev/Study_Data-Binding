@@ -5,36 +5,35 @@
     <title>hyunmindev</title>
 </head>
 <body>
-
-<input model="myData"  spellcheck="false">
-<p bind="myData"></p>
-<p bind="myData"></p>
-<p bind="myData"></p>
-<p bind="myData"></p>
-<p bind="myData"></p>
-
 <script src="data.js"></script>
-<script>
-  const data = {};
-  data.myData = new Data('');
-  const modelViews = document.querySelectorAll('[model]');
-  const bindViews = document.querySelectorAll('[bind]');
 
-  modelViews.forEach((view) => {
-    const name = view.getAttribute('model');
-    view.oninput= () => {
-      data[name].value = view.value;
-    }
-    data[name].subscribe((newValue) => {
-      view.value = newValue;
-    });
-  })
-  bindViews.forEach((view) => {
-    const name = view.getAttribute('bind');
-    data[name].subscribe((newValue) => {
-      view.innerHTML = newValue;
-    });
-  })
+<input model="데이터1" spellcheck="false">
+<input model="데이터2" spellcheck="false">
+<p bind="데이터1"></p>
+<p bind="데이터1"></p>
+<p bind="데이터2"></p>
+<p bind="데이터2"></p>
+
+<script>
+  const 데이터들 = {};
+  데이터들.데이터1 = new Data('');
+  데이터들.데이터2 = new Data('');
+  const $양방향_뷰들 = document.querySelectorAll('[model]');
+  const $단방향_뷰들 = document.querySelectorAll('[bind]');
+
+  $양방향_뷰들.forEach(($양방향_뷰) => {
+    const 데이터_이름 = $양방향_뷰.getAttribute('model');
+    const 양방향_뷰 = new View($양방향_뷰);
+
+    양방향_뷰.구독(데이터들[데이터_이름]);
+    데이터들[데이터_이름].구독(양방향_뷰);
+  });
+
+  $단방향_뷰들.forEach(($단방향_뷰) => {
+    const 데이터_이름 = $단방향_뷰.getAttribute('bind');
+    const 단방향_뷰 = new View($단방향_뷰);
+    데이터들[데이터_이름].구독(단방향_뷰);
+  });
 </script>
 
 </body>

@@ -1,25 +1,36 @@
 class Data {
-  #value;
-  #listeners = [];
-
-  constructor(value) {
-    this.#value = value;
+  constructor(값) {
+    this.값 = 값;
+    this.구독자들 = [];
   }
 
-  subscribe(listener) {
-    this.#listeners.push(listener);
+  구독(새로운_구독자) {
+    this.구독자들.push(새로운_구독자);
   }
 
-  #notify() {
-    this.#listeners.forEach(listener => listener(this.value));
+  알림_발송() {
+    this.구독자들.forEach(구독자 => 구독자.업데이트(this.값));
   }
 
-  get value() {
-    return this.#value;
+  업데이트(새로운_값) {
+    this.값 = 새로운_값;
+    this.알림_발송();
+  }
+}
+
+class View {
+  constructor(뷰) {
+    this.뷰 = 뷰;
   }
 
-  set value(newValue) {
-    this.#value = newValue;
-    this.#notify();
+  구독(새로운_구독자) {
+    this.뷰.addEventListener('input', () => {
+      새로운_구독자.업데이트(this.뷰.value);
+    });
+  }
+
+  업데이트(새로운_값) {
+    this.뷰.innerText = 새로운_값;
+    this.뷰.value = 새로운_값;
   }
 }

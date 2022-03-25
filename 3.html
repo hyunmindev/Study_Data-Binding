@@ -5,29 +5,22 @@
     <title>hyunmindev</title>
 </head>
 <body>
+<script src="data.js"></script>
 
 <input id="inputView">
 <p id="pView"></p>
 
-<script src="data.js"></script>
 <script>
-  const data = new Data('');
-  inputView.oninput = () => {
-    data.value = inputView.value;
-  };
+  const 데이터 = new Data('');
+  const 인풋_뷰 = new View(inputView1);
+  const 피_뷰 = new View(pView);
 
-  function updatePView(newData) {
-    pView.innerHTML = newData;
-  }
+  인풋_뷰.구독(데이터);
 
-  function updateInputView(newData) {
-    inputView.value = newData;
-  }
+  데이터.구독(인풋_뷰);
+  데이터.구독(피_뷰);
 
-  data.subscribe(updatePView);
-  data.subscribe(updateInputView);
-
-  setTimeout(() => data.value = 'new', 3000);
+  setTimeout(() => 데이터.업데이트('new'), 3000);
 </script>
 
 </body>
